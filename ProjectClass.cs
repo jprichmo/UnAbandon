@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,12 +9,8 @@ using System.Text.RegularExpressions;
 namespace ProjectUnAbandon
 {
     //Object to hold a project
-    public class Project
+    public class Project : ParentAddress
     {
-        private string addressStreet;
-        private string addressCity;
-        private string addressState;
-        private int addressZipCode;
         private string recordID;
         private string violationType;
         private string dateReported;
@@ -23,27 +19,12 @@ namespace ProjectUnAbandon
         private string recordStatus;
         private string recordStatusDate;
 
-
         //constructor
         public Project(string street, string city, string state, int zipCode,
             string id, string vType, string dateReport, decimal latitude,
-            decimal longitude, string rStatus, string rStatusDate)
+            decimal longitude, string rStatus, string rStatusDate) 
+            : base(street, city, state, zipCode)
         {
-            
-            SetProject(latitude, longitude, id, vType, dateReport,
-                rStatus, rStatusDate, street,
-                city, state, zipCode);
-        }
-
-        //set using prop
-        public void SetProject(decimal latitude, decimal longitude, string id,
-            string vType, string dateReport, string rStatus, string rStatusDate,
-            string street, string city, string state, int zipCode)
-        {
-            AddressStreet = street;
-            AddressCity = city;
-            AddressState = state;
-            AddressZipCode = zipCode;
             RecordID = id;
             ViolationType = vType;
             DateReported = dateReport;
@@ -52,29 +33,10 @@ namespace ProjectUnAbandon
             RecordStatus = rStatus;
             RecordStatusDate = rStatusDate;
         }
+
         //properties
         //properties still each need checks to see if
         //valid when sent as value to be set{}
-        public string AddressStreet
-        {
-            get { return addressStreet; }
-            set { addressStreet = value; }
-        }
-        public string AddressCity
-        {
-            get { return addressCity; }
-            set { addressCity = value; }
-        }
-        public string AddressState
-        {
-            get { return addressState; }
-            set { addressState = value; }
-        }
-        public int AddressZipCode
-        {
-            get { return addressZipCode; }
-            set { addressZipCode = value; }
-        }
         public string RecordID
         {
             get { return recordID; }
@@ -129,4 +91,3 @@ namespace ProjectUnAbandon
 
     }
 }
-
