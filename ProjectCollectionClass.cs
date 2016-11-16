@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,6 +52,7 @@ namespace ProjectUnAbandon
             string tempAddressCity, tempAddressState;
             string tempFullStreetAddress;
             int tempAddressZipCode;
+            
 
             foreach (var element in query)
             {
@@ -72,14 +73,19 @@ namespace ProjectUnAbandon
                 tempAddressState = element.addressState;
                 tempAddressZipCode = Convert.ToInt32(element.addressZipCode);
 
+                DateTime theReportDate = DateTime.ParseExact(tempReportDate, "dd/MM/yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+                DateTime theRecordStatusDate = DateTime.ParseExact(tempRecordStatusDate, "dd/MM/yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+
                 tempFullStreetAddress = tempAddressStreetNumber +
                     tempAddressStreetDirection + tempAddressStreet +
                     tempAddressStreetType;
 
                 JobCollection.Add(new Project(tempFullStreetAddress,
                     tempAddressCity, tempAddressState, tempAddressZipCode,
-                    tempRecordID, tempViolationType, tempReportDate,
-                    tempLatitude, tempLongitude, tempRecordStatus, tempRecordStatusDate));
+                    tempRecordID, tempViolationType, theReportDate,
+                    tempLatitude, tempLongitude, tempRecordStatus, theRecordStatusDate));
             }
         }
 
@@ -127,10 +133,15 @@ namespace ProjectUnAbandon
             Console.Write("Enter the Zip Code of the enforcement case : ");
             tempAddressZipCode = Convert.ToInt32(Console.ReadLine());
 
+            DateTime theReportDate = DateTime.ParseExact(tempReportDate, "dd/MM/yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+            DateTime theRecordStatusDate = DateTime.ParseExact(tempRecordStatusDate, "dd/MM/yyyy",
+                                   System.Globalization.CultureInfo.InvariantCulture);
+
             JobCollection.Add(new Project(tempFullStreetAddress,
                     tempAddressCity, tempAddressState, tempAddressZipCode,
-                    tempRecordID, tempViolationType, tempReportDate,
-                    tempLatitude, tempLongitude, tempRecordStatus, tempRecordStatusDate));
+                    tempRecordID, tempViolationType, theReportDate,
+                    tempLatitude, tempLongitude, tempRecordStatus, theRecordStatusDate));
         }
 
         //Display last added item to the user
@@ -201,7 +212,9 @@ namespace ProjectUnAbandon
                 case 4:
                     Console.WriteLine("Enter Date Reported: ");
                     str = Console.ReadLine();
-                    JobCollection[sel].DateReported = str;
+                    DateTime theReportDate = DateTime.ParseExact(str, "dd/MM/yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+                    JobCollection[sel].DateReported = theReportDate;
                     Console.WriteLine(JobCollection[sel]);
                     break;
                 case 5:
@@ -213,7 +226,9 @@ namespace ProjectUnAbandon
                 case 6:
                     Console.WriteLine("Enter Record Status Date: ");
                     str = Console.ReadLine();
-                    JobCollection[sel].RecordStatusDate = str;
+                    DateTime theRecordStatusDate = DateTime.ParseExact(str, "dd/MM/yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+                    JobCollection[sel].RecordStatusDate = theRecordStatusDate;
                     Console.WriteLine(JobCollection[sel]);
                     break;
                 case 7:
@@ -323,10 +338,12 @@ namespace ProjectUnAbandon
                 case 4:
                     Console.WriteLine("Enter Date Reported: ");
                     str = Console.ReadLine();
+                    DateTime theReportDate = DateTime.ParseExact(str, "dd/MM/yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture);
 
                     filtered =
                         from element in JobCollection
-                        where element.DateReported == str
+                        where element.DateReported == theReportDate
                         select element;
 
                     foreach (var element in filtered)
@@ -352,9 +369,12 @@ namespace ProjectUnAbandon
                     Console.WriteLine("Enter Record Status Date: ");
                     str = Console.ReadLine();
 
+                    DateTime theRecordStatusDate = DateTime.ParseExact(str, "dd/MM/yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+
                     filtered =
                         from element in JobCollection
-                        where element.RecordStatusDate == str
+                        where element.RecordStatusDate == theRecordStatusDate
                         select element;
 
                     foreach (var element in filtered)
@@ -423,6 +443,5 @@ namespace ProjectUnAbandon
                     break;
             }
         }
-
     }
 }
