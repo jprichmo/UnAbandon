@@ -4,3 +4,7 @@ C:\Users\jprichmo\Desktop\ProjectUnAbandon\obj\Debug\Project-Phase3.1.pdb
 C:\Users\jprichmo\Desktop\ProjectUnAbandon\bin\Debug\Project-Phase3.1.exe
 C:\Users\jprichmo\Desktop\ProjectUnAbandon\bin\Debug\Project-Phase3.1.pdb
 C:\Users\jprichmo\Desktop\ProjectUnAbandon\obj\Debug\UnAbandon.csprojResolveAssemblyReference.cache
+C:\Users\jprichmo\Desktop\GitHub\ProjectUnA\bin\Debug\Project-Phase3.1.exe.config
+C:\Users\jprichmo\Desktop\GitHub\ProjectUnA\obj\Debug\Project-Phase3.1.exe
+C:\Users\jprichmo\Desktop\GitHub\ProjectUnA\obj\Debug\Project-Phase3.1.pdb
+C:\Users\jprichmo\Desktop\GitHub\ProjectUnA\obj\Debug\UnAbandon.csprojResolveAssemblyReference.cache
