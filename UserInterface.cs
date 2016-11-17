@@ -145,7 +145,7 @@ namespace ProjectUnAbandon
         //Display all projects and search for a field with a user defined value
         public static void SearchItems()
         {
-            ProjectCollection.DisplayAll();
+            //ProjectCollection.DisplayAll();
             ProjectCollection.Search();
         }
 
