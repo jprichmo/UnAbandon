@@ -1,3 +1,36 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+//  PROJECT CLASS for PROJECT UNABANDON
+//
+//  AUTHOR:     Derek Blankinship
+//  EDITOR:     Jason Richmond
+//
+//  Project Class defines objects that store data from South Bend Code
+//  Enforcement. It inherits from the ParentAddress class that defines
+//  how addresses are stored.
+//
+//  Attributes defined:
+//      recordID : string
+//          > the record ID of the violation
+//      violationType : string
+//          > the type of violation reported
+//      dateReported : DateTime
+//          > the report date of the violation
+//      latitudeX : decimal
+//          > the geolocation latitude in decimal form
+//      longitudeY : decimal
+//          > the geolocation longitude in decimal form
+//      recordStatus : string
+//          > the status as of the current data set
+//      recordStatusDate : DateTime
+//          > the date of the status
+//
+//  Methods overloaded:
+//      ToString() : string
+//          > Converts all types to string and formats output
+//
+///////////////////////////////////////////////////////////////////////////////
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
