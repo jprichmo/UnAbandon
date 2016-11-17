@@ -1,4 +1,35 @@
-﻿using System;
+///////////////////////////////////////////////////////////////////////////////
+//
+//  PROJECT COLLECTION CLASS for PROJECT UNABANDON
+//
+//  AUTHOR:     Derek Blankinship
+//  EDITOR:     Jason Richmond
+//
+//  This is a container class that holds a List of Project Objects called 
+//  JobCollection allowing for the manipulation of South Bend Code Enforcement
+//  data loaded from a CSV.
+//
+//  Methods defined:
+//      FillProjectObjects() : void
+//          > imports data from the CSV, adding each row as a Project
+//      ClearAllData() : void
+//          > removes all Projects from JobCollection
+//      AddProjectToList() : void
+//          > adds a Project to the end of JobCollection
+//      DisplayAddedItem() : void
+//          > prints the last Project in JobCollection
+//      GetCount() : int
+//          > returns the number of Projects in JobCollection
+//      DisplayAll() : void
+//          > prints the entire JobCollection to the console
+//      Modify(int) : void
+//          > allows user to change a Project field
+//      Search() : void
+//          > allows user to search for specific values in Project fields
+//
+///////////////////////////////////////////////////////////////////////////////
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +47,7 @@ namespace ProjectUnAbandon
         //Fill Objects with data
         static public void FillProjectObjects()
         {
+// ADD EXCEPTION HANDLING FOR THE SOURCE
             string source;
             Console.WriteLine("Enter the file path for the csv to load data from");
             source = Console.ReadLine();
@@ -52,6 +84,7 @@ namespace ProjectUnAbandon
             string tempAddressCity, tempAddressState;
             string tempFullStreetAddress;
             int tempAddressZipCode;
+            
 
             foreach (var element in query)
             {
@@ -72,14 +105,18 @@ namespace ProjectUnAbandon
                 tempAddressState = element.addressState;
                 tempAddressZipCode = Convert.ToInt32(element.addressZipCode);
 
+                DateTime theReportDate = DateTime.Parse(tempReportDate);
+                                       
+                DateTime theRecordStatusDate = DateTime.Parse(tempRecordStatusDate);
+
                 tempFullStreetAddress = tempAddressStreetNumber +
                     tempAddressStreetDirection + tempAddressStreet +
                     tempAddressStreetType;
 
                 JobCollection.Add(new Project(tempFullStreetAddress,
                     tempAddressCity, tempAddressState, tempAddressZipCode,
-                    tempRecordID, tempViolationType, tempReportDate,
-                    tempLatitude, tempLongitude, tempRecordStatus, tempRecordStatusDate));
+                    tempRecordID, tempViolationType, theReportDate,
+                    tempLatitude, tempLongitude, tempRecordStatus, theRecordStatusDate));
             }
         }
 
@@ -109,11 +146,13 @@ namespace ProjectUnAbandon
             tempRecordID = Console.ReadLine();
             Console.Write("Enter the Voilation Type of the enforcement case : ");
             tempViolationType = Console.ReadLine();
-            Console.Write("Enter the Date the enforcement case was reported : ");
+            Console.WriteLine("Enter the Date the enforcement case was reported");
+            Console.Write("Please use format MM/DD/YYYY    : ");
             tempReportDate = Console.ReadLine();
             Console.Write("Enter the Current Status of the enforcement case : ");
             tempRecordStatus = Console.ReadLine();
-            Console.Write("Enter the date the Current Status was updated : ");
+            Console.WriteLine("Enter the date the Current Status was updated : ");
+            Console.Write("Please use format MM/DD/YYYY    : ");
             tempRecordStatusDate = Console.ReadLine();
             Console.WriteLine("Enter the full address of the enforcement case");
             Console.WriteLine("For the first part add the Street Number (123),"
@@ -126,11 +165,14 @@ namespace ProjectUnAbandon
             tempAddressState = Console.ReadLine();
             Console.Write("Enter the Zip Code of the enforcement case : ");
             tempAddressZipCode = Convert.ToInt32(Console.ReadLine());
+// ADD EXCEPTION HANDLING FOR BAD DATE DATA
+            DateTime theReportDate = DateTime.Parse(tempReportDate);
+            DateTime theRecordStatusDate = DateTime.Parse(tempRecordStatusDate);
 
             JobCollection.Add(new Project(tempFullStreetAddress,
                     tempAddressCity, tempAddressState, tempAddressZipCode,
-                    tempRecordID, tempViolationType, tempReportDate,
-                    tempLatitude, tempLongitude, tempRecordStatus, tempRecordStatusDate));
+                    tempRecordID, tempViolationType, theReportDate,
+                    tempLatitude, tempLongitude, tempRecordStatus, theRecordStatusDate));
         }
 
         //Display last added item to the user
@@ -145,6 +187,7 @@ namespace ProjectUnAbandon
             return JobCollection.Count();
         }
 
+// MAYBE ADD A DISPLAY FEW FUNCTION TO MAKE THIS USEFUL
         //Display all items and print to console
         public static void DisplayAll()
         {
@@ -201,7 +244,8 @@ namespace ProjectUnAbandon
                 case 4:
                     Console.WriteLine("Enter Date Reported: ");
                     str = Console.ReadLine();
-                    JobCollection[sel].DateReported = str;
+                    DateTime theReportDate = DateTime.Parse(str);
+                    JobCollection[sel].DateReported = theReportDate;
                     Console.WriteLine(JobCollection[sel]);
                     break;
                 case 5:
@@ -213,7 +257,8 @@ namespace ProjectUnAbandon
                 case 6:
                     Console.WriteLine("Enter Record Status Date: ");
                     str = Console.ReadLine();
-                    JobCollection[sel].RecordStatusDate = str;
+                    DateTime theRecordStatusDate = DateTime.Parse(str);
+                    JobCollection[sel].RecordStatusDate = theRecordStatusDate;
                     Console.WriteLine(JobCollection[sel]);
                     break;
                 case 7:
@@ -323,10 +368,11 @@ namespace ProjectUnAbandon
                 case 4:
                     Console.WriteLine("Enter Date Reported: ");
                     str = Console.ReadLine();
+                    DateTime theReportDate = DateTime.Parse(str);
 
                     filtered =
                         from element in JobCollection
-                        where element.DateReported == str
+                        where element.DateReported == theReportDate
                         select element;
 
                     foreach (var element in filtered)
@@ -352,9 +398,11 @@ namespace ProjectUnAbandon
                     Console.WriteLine("Enter Record Status Date: ");
                     str = Console.ReadLine();
 
+                    DateTime theRecordStatusDate = DateTime.Parse(str);
+
                     filtered =
                         from element in JobCollection
-                        where element.RecordStatusDate == str
+                        where element.RecordStatusDate == theRecordStatusDate
                         select element;
 
                     foreach (var element in filtered)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,20 +26,21 @@ namespace ProjectUnAbandon
             char option;
             char check;
 
-            Console.WriteLine("\n\tPHASE 3 MENU\n");
+            Console.WriteLine("\n\tPHASE 4 MENU\n");
             Console.WriteLine("\tOption 0: Load New Data");
             Console.WriteLine("\tOption 1: Add Item");
             Console.WriteLine("\tOption 2: Modify Item");
             Console.WriteLine("\tOption 3: Search and Display Results");
             Console.WriteLine("\tOption 4: Display Number of Items Stored");
-            Console.WriteLine("\tOption 5: Exit");
+            Console.WriteLine("\tOption 5: Choose a LINQ Query to run");
+            Console.WriteLine("\tOption 6: Exit");
             Console.Write("\n\tPlease select an option from the list: ");
 
             check = Convert.ToChar(Console.ReadLine().Substring(0, 1));
 
-            while (check < '0' || check > '5')
+            while (check < '0' || check > '6')
             {
-                Console.Write("\n\tPlease choose 0, 1, 2, 3, 4, or 5: ");
+                Console.Write("\n\tPlease choose 0, 1, 2, 3, 4, 5, or 6: ");
                 Console.ReadLine();
                 check = Convert.ToChar(Console.ReadLine().Substring(0, 1));
             }
@@ -51,6 +52,7 @@ namespace ProjectUnAbandon
         //Control for user selection
         public static void SelectOption(char opt)
         {
+            char optionLINQ;
             //char sel;
             switch (opt)
             {
@@ -73,6 +75,10 @@ namespace ProjectUnAbandon
                     DisplayCount();
                     break;
                 case '5':
+                    optionLINQ = DisplayLINQChoices();
+                    ExecuteLINQ(optionLINQ);
+                    break;
+                case '6':
                     exit = true;
                     break;
                 default:
@@ -143,5 +149,60 @@ namespace ProjectUnAbandon
             ProjectCollection.Search();
         }
 
+        public static char DisplayLINQChoices()
+        {
+            char option;
+            char check;
+
+            Console.WriteLine("\n\tLINQ Query Menu\n");
+            Console.WriteLine("\tOption 0: Count Number of Cases for a Specific Address");
+            Console.WriteLine("\tOption 1: Count Number of Cases per Zip Code");
+            Console.WriteLine("\tOption 2: Fake Query");
+            Console.WriteLine("\tOption 3: Fake Query");
+            Console.WriteLine("\tOption 4: Fake Query");
+            Console.WriteLine("\tOption 5: Fake Query");
+            Console.Write("\n\tPlease select an option from the list: ");
+
+            check = Convert.ToChar(Console.ReadLine().Substring(0, 1));
+
+            while (check < '0' || check > '5')
+            {
+                Console.Write("\n\tPlease choose 0, 1, 2, 3, 4, or 5: ");
+                Console.ReadLine();
+                check = Convert.ToChar(Console.ReadLine().Substring(0, 1));
+            }
+
+            option = Convert.ToChar(check);
+            return option;
+        }
+
+        public static void ExecuteLINQ(char option)
+        {
+            switch (option)
+            {
+                case '0':
+                    ProjectCollection.GetCount();
+                    //call to ProjectCollection query
+                    break;
+                case '1':
+                    //call to ProjectCollection query
+                    break;
+                case '2':
+                    //call to ProjectCollection query
+                    break;
+                case '3':
+                    //call to ProjectCollection query
+                    break;
+                case '4':
+                    //call to ProjectCollection query
+                    break;
+                case '5':
+                    //call to ProjectCollection query
+                    break;
+                default:
+                    Console.WriteLine("\n\tThat is not a valid input.\n");
+                    break;
+            }
+        }
     }
 }
