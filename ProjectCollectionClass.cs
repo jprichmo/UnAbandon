@@ -1,3 +1,34 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+//  PROJECT COLLECTION CLASS for PROJECT UNABANDON
+//
+//  AUTHOR:     Derek Blankinship
+//  EDITOR:     Jason Richmond
+//
+//  This is a container class that holds a List of Project Objects called 
+//  JobCollection allowing for the manipulation of South Bend Code Enforcement
+//  data loaded from a CSV.
+//
+//  Methods defined:
+//      FillProjectObjects() : void
+//          > imports data from the CSV, adding each row as a Project
+//      ClearAllData() : void
+//          > removes all Projects from JobCollection
+//      AddProjectToList() : void
+//          > adds a Project to the end of JobCollection
+//      DisplayAddedItem() : void
+//          > prints the last Project in JobCollection
+//      GetCount() : int
+//          > returns the number of Projects in JobCollection
+//      DisplayAll() : void
+//          > prints the entire JobCollection to the console
+//      Modify(int) : void
+//          > allows user to change a Project field
+//      Search() : void
+//          > allows user to search for specific values in Project fields
+//
+///////////////////////////////////////////////////////////////////////////////
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +47,7 @@ namespace ProjectUnAbandon
         //Fill Objects with data
         static public void FillProjectObjects()
         {
+// ADD EXCEPTION HANDLING FOR THE SOURCE
             string source;
             Console.WriteLine("Enter the file path for the csv to load data from");
             source = Console.ReadLine();
@@ -133,7 +165,7 @@ namespace ProjectUnAbandon
             tempAddressState = Console.ReadLine();
             Console.Write("Enter the Zip Code of the enforcement case : ");
             tempAddressZipCode = Convert.ToInt32(Console.ReadLine());
-
+// ADD EXCEPTION HANDLING FOR BAD DATE DATA
             DateTime theReportDate = DateTime.Parse(tempReportDate);
             DateTime theRecordStatusDate = DateTime.Parse(tempRecordStatusDate);
 
@@ -155,6 +187,7 @@ namespace ProjectUnAbandon
             return JobCollection.Count();
         }
 
+// MAYBE ADD A DISPLAY FEW FUNCTION TO MAKE THIS USEFUL
         //Display all items and print to console
         public static void DisplayAll()
         {

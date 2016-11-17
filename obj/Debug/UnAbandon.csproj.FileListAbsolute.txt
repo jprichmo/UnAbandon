@@ -8,3 +8,5 @@ C:\Users\jprichmo\Desktop\GitHub\ProjectUnA\bin\Debug\Project-Phase3.1.exe.confi
 C:\Users\jprichmo\Desktop\GitHub\ProjectUnA\obj\Debug\Project-Phase3.1.exe
 C:\Users\jprichmo\Desktop\GitHub\ProjectUnA\obj\Debug\Project-Phase3.1.pdb
 C:\Users\jprichmo\Desktop\GitHub\ProjectUnA\obj\Debug\UnAbandon.csprojResolveAssemblyReference.cache
+C:\Users\jprichmo\Desktop\GitHub\ProjectUnA\bin\Debug\Project-Phase3.1.exe
+C:\Users\jprichmo\Desktop\GitHub\ProjectUnA\bin\Debug\Project-Phase3.1.pdb
