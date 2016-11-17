@@ -25,7 +25,7 @@
 //      recordStatusDate : DateTime
 //          > the date of the status
 //
-//  Methods overloaded:
+//  Methods defined:
 //      ToString() : string
 //          > Converts all types to string and formats output
 //
@@ -41,7 +41,6 @@ using System.Text.RegularExpressions;
 
 namespace ProjectUnAbandon
 {
-    //Object to hold a project
     public class Project : ParentAddress
     {
         private string recordID;
@@ -52,7 +51,9 @@ namespace ProjectUnAbandon
         private string recordStatus;
         private DateTime recordStatusDate;
 
-        //constructor
+        //=====================================================================
+        //  CONSTRUCTOR
+        //=====================================================================
         public Project(string street, string city, string state, int zipCode,
             string id, string vType, DateTime dateReport, decimal latitude,
             decimal longitude, string rStatus, DateTime rStatusDate) 
@@ -67,11 +68,13 @@ namespace ProjectUnAbandon
             RecordStatusDate = rStatusDate;
         }
 
-        //properties
-        //properties still each need checks to see if
-        //valid when sent as value to be set{}
-        //could use error catching still considering how
+        //=====================================================================
+        //  PROPERTIES
+        //=====================================================================
 
+        //---------------------------------------------------------------------
+        //  RECORD ID
+        //---------------------------------------------------------------------
         public string RecordID
         {
             get { return recordID; }
@@ -80,7 +83,10 @@ namespace ProjectUnAbandon
                 recordID = value;
             }
         }
-        //done
+
+        //---------------------------------------------------------------------
+        //  VIOLATION TYPE
+        //---------------------------------------------------------------------
         public string ViolationType
         {
             get { return violationType; }
@@ -124,7 +130,10 @@ namespace ProjectUnAbandon
             }
         }
 
-        //done
+//NEED TO FIX EXCEPTION HANDLING FOR DATETIME, RIGHT NOW LIMITED
+        //---------------------------------------------------------------------
+        //  DATE REPORTED
+        //---------------------------------------------------------------------
         public DateTime DateReported
         {
             get { return dateReported; }
@@ -161,11 +170,12 @@ namespace ProjectUnAbandon
                     DateReported = theDateReported;
                     Console.WriteLine();
                 }
-
             }
         }
 
-        //done
+        //---------------------------------------------------------------------
+        //  LATITUDE X
+        //---------------------------------------------------------------------
         public decimal LatitudeX
         {
             get { return latitudeX; }
@@ -197,7 +207,9 @@ namespace ProjectUnAbandon
             }
         }
 
-        //done
+        //---------------------------------------------------------------------
+        //  LONGITUDE Y
+        //---------------------------------------------------------------------
         public decimal LongitudeY
         {
             get { return longitudeY; }
@@ -231,6 +243,9 @@ namespace ProjectUnAbandon
 
         //deciding if i want to list all options. Feel like I should but
         //leaving it till later when i'm less motivated for real coding
+        //---------------------------------------------------------------------
+        //  RECORD STATUS
+        //---------------------------------------------------------------------
         public string RecordStatus
         {
             get { return recordStatus; }
@@ -284,7 +299,10 @@ namespace ProjectUnAbandon
             }
         }
 
-        //done
+//NEED TO FIX EXCEPTION HANDLING FOR DATETIME, RIGHT NOW LIMITED
+        //---------------------------------------------------------------------
+        //  RECORD STATUS DATE
+        //---------------------------------------------------------------------
         public DateTime RecordStatusDate
         {
             get { return recordStatusDate; }
@@ -318,11 +336,16 @@ namespace ProjectUnAbandon
                     RecordStatusDate = theRecordStatus;
                     Console.WriteLine();
                 }
-                
             }
         }
-        
-        //ToString override to print item contents
+
+        //=====================================================================
+        //  METHODS
+        //=====================================================================
+
+        //---------------------------------------------------------------------
+        //  TO STRING OVERRIDE : string
+        //---------------------------------------------------------------------
         public override string ToString()
         {
             var dateReportedOnlyDate = DateReported.ToShortDateString();
