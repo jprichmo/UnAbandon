@@ -1,3 +1,42 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+//  CONSOLE USER INTERFACE for PROJECT UNABANDON
+//
+//  AUTHOR:     Jason Richmond
+//  EDITOR:     Derek Blankinship
+//
+//  
+//
+//  Functions defined:
+//      Loop() : void
+//          >
+//      MenuOptions() : char
+//          >
+//      SelectOption(char) : void
+//          >
+//      ClearAllData() : void
+//          >
+//      LoadData() : void
+//          >
+//      AddItem() : void
+//          >
+//      DisplayAddedItem() : void
+//          >
+//      DisplayStoredItem() : void
+//          >
+//      DisplayCount() : void
+//          >
+//      ModifyItem() : void
+//          >
+//      SearchItems() : void
+//          >
+//      DisplayLINQChoices() : char
+//          >
+//      ExecuteLINQ(char) : void
+//          >
+//
+///////////////////////////////////////////////////////////////////////////////
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +50,13 @@ namespace ProjectUnAbandon
         //variable to control UI loop
         public static bool exit = false;
 
-        //Loop user interface
+        //=====================================================================
+        //  FUNCTIONS
+        //=====================================================================
+
+        //---------------------------------------------------------------------
+        //  LOOP USER INTERFACE : void
+        //---------------------------------------------------------------------
         public static void Loop()
         {
             while (!exit)
@@ -20,7 +65,9 @@ namespace ProjectUnAbandon
             }
         }
 
-        //Display the menu
+        //---------------------------------------------------------------------
+        //  DISPLAY MENU OPTIONS : char
+        //---------------------------------------------------------------------
         public static char MenuOptions()
         {
             char option;
@@ -32,7 +79,7 @@ namespace ProjectUnAbandon
             Console.WriteLine("\tOption 2: Modify Item");
             Console.WriteLine("\tOption 3: Search and Display Results");
             Console.WriteLine("\tOption 4: Display Number of Items Stored");
-            Console.WriteLine("\tOption 5: Choose a LINQ Query to run");
+            Console.WriteLine("\tOption 5: Choose a Predefined Query");
             Console.WriteLine("\tOption 6: Exit");
             Console.Write("\n\tPlease select an option from the list: ");
 
@@ -49,7 +96,9 @@ namespace ProjectUnAbandon
             return option;
         }
 
-        //Control for user selection
+        //---------------------------------------------------------------------
+        //  CONTROL FOR USER SELECTION : void
+        //---------------------------------------------------------------------
         public static void SelectOption(char opt)
         {
             char optionLINQ;
@@ -87,40 +136,52 @@ namespace ProjectUnAbandon
             }
         }
 
-        //Clear all data from collection
+        //---------------------------------------------------------------------
+        //  CLEAR ALL DATA FROM COLLECTION : void
+        //---------------------------------------------------------------------
         public static void ClearAllData()
         {
             //call static method in ProjectCollection Class
             //to use list.clear()
             ProjectCollection.ClearAllData();
         }
-        
-        //Load data into collection
+
+        //---------------------------------------------------------------------
+        //  LOAD DATA INTO COLLECTION : void
+        //---------------------------------------------------------------------
         public static void LoadData()
         {
             //call static method in ProjectCollection Class to fill the list
             ProjectCollection.FillProjectObjects();
         }
 
-        //Add an item to the collection
+        //---------------------------------------------------------------------
+        //  ADD ITEM TO COLLECTION : void
+        //---------------------------------------------------------------------
         public static void AddItem()
         {
             ProjectCollection.AddProjectToList();
         }
 
-        //Display last added item
+        //---------------------------------------------------------------------
+        //  DISPLAY LAST ITEM ADDED : void
+        //---------------------------------------------------------------------
         public static void DisplayAddedItem()
         {
             ProjectCollection.DisplayAddedItem();
         }
 
-        //Display all project items and fields
+        //---------------------------------------------------------------------
+        //  DISPLAY ALL ITEMS AND FIELDS : void
+        //---------------------------------------------------------------------
         public static void DisplayStoredItems()
         {
             ProjectCollection.DisplayAll();
         }
-        
-        //Display the number projects
+
+        //---------------------------------------------------------------------
+        //  DISPLAY NUMBER OF PROJECTS : void
+        //---------------------------------------------------------------------
         public static void DisplayCount()
         {
             int count = ProjectCollection.GetCount();
@@ -128,7 +189,9 @@ namespace ProjectUnAbandon
                 count);
         }
 
-        //Modify a project item and field user has selected
+        //---------------------------------------------------------------------
+        //  MODIFY SELECTED ITEM FIELD : void
+        //---------------------------------------------------------------------
         public static void ModifyItem()
         {
             Console.WriteLine("Enter the ITEM NUMBER you wish to modify: ");
@@ -142,24 +205,30 @@ namespace ProjectUnAbandon
             ProjectCollection.Modify(sel);
         }
 
-        //Display all projects and search for a field with a user defined value
+        //---------------------------------------------------------------------
+        //  SEARCH FOR VALUE IN FIELD : void
+        //---------------------------------------------------------------------
+        //Search for a field with a user defined value
         public static void SearchItems()
         {
             //ProjectCollection.DisplayAll();
             ProjectCollection.Search();
         }
 
+        //---------------------------------------------------------------------
+        //  DISPLAY LINQ CHOICES : char
+        //---------------------------------------------------------------------
         public static char DisplayLINQChoices()
         {
             char option;
             char check;
 
-            Console.WriteLine("\n\tLINQ Query Menu\n");
+            Console.WriteLine("\n\tPredefined Query Menu\n");
             Console.WriteLine("\tOption 0: Count Number of Cases for a Specific Address");
             Console.WriteLine("\tOption 1: Count Number of Cases per Zip Code");
-            Console.WriteLine("\tOption 2: Fake Query");
-            Console.WriteLine("\tOption 3: Fake Query");
-            Console.WriteLine("\tOption 4: Fake Query");
+            Console.WriteLine("\tOption 2: Most Recently Reported Cases");
+            Console.WriteLine("\tOption 3: Most Recently Reported Cases by Zip Code");
+            Console.WriteLine("\tOption 4: Number of Violations by Type");
             Console.WriteLine("\tOption 5: Fake Query");
             Console.Write("\n\tPlease select an option from the list: ");
 
@@ -176,6 +245,9 @@ namespace ProjectUnAbandon
             return option;
         }
 
+        //---------------------------------------------------------------------
+        //  EXECUTE SELECTED LINQ : void
+        //---------------------------------------------------------------------
         public static void ExecuteLINQ(char option)
         {
             switch (option)
