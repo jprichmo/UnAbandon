@@ -47,7 +47,6 @@ namespace ProjectUnAbandon
         //Fill Objects with data
         static public void FillProjectObjects()
         {
-// ADD EXCEPTION HANDLING FOR THE SOURCE
             string source;
             Console.WriteLine("Enter the file path for the csv to load data from");
             source = Console.ReadLine();
@@ -151,7 +150,7 @@ namespace ProjectUnAbandon
             tempReportDate = Console.ReadLine();
             Console.Write("Enter the Current Status of the enforcement case : ");
             tempRecordStatus = Console.ReadLine();
-            Console.WriteLine("Enter the date the Current Status was updated : ");
+            Console.WriteLine("Enter the date the Current Status was updated");
             Console.Write("Please use format MM/DD/YYYY    : ");
             tempRecordStatusDate = Console.ReadLine();
             Console.WriteLine("Enter the full address of the enforcement case");
@@ -165,7 +164,8 @@ namespace ProjectUnAbandon
             tempAddressState = Console.ReadLine();
             Console.Write("Enter the Zip Code of the enforcement case : ");
             tempAddressZipCode = Convert.ToInt32(Console.ReadLine());
-// ADD EXCEPTION HANDLING FOR BAD DATE DATA
+            Console.WriteLine();
+
             DateTime theReportDate = DateTime.Parse(tempReportDate);
             DateTime theRecordStatusDate = DateTime.Parse(tempRecordStatusDate);
 
@@ -187,7 +187,6 @@ namespace ProjectUnAbandon
             return JobCollection.Count();
         }
 
-// MAYBE ADD A DISPLAY FEW FUNCTION TO MAKE THIS USEFUL
         //Display all items and print to console
         public static void DisplayAll()
         {
@@ -294,6 +293,19 @@ namespace ProjectUnAbandon
         //Search for a user-defined field value using LINQ
         public static void Search()
         {
+            Console.WriteLine("\n\tChoose from this list which field you wish to search by");
+            Console.WriteLine("\tOption 0: Latitude");
+            Console.WriteLine("\tOption 1: Longitude");
+            Console.WriteLine("\tOption 2: Record ID");
+            Console.WriteLine("\tOption 3: Violation Type");
+            Console.WriteLine("\tOption 4: Date Reported");
+            Console.WriteLine("\tOption 5: Record Status");
+            Console.WriteLine("\tOption 6: Record Status Date");
+            Console.WriteLine("\tOption 7: Street");
+            Console.WriteLine("\tOption 8: City");
+            Console.WriteLine("\tOption 9: State");
+            Console.WriteLine("\tOption 10: Zip Code");
+
             Console.WriteLine("Enter the FIELD NUMBER you wish to search with: ");
             int s = Convert.ToInt32(Console.ReadLine());
             while (s < 0 || s > 10)
@@ -301,9 +313,7 @@ namespace ProjectUnAbandon
                 Console.WriteLine("Enter a number from 0 to 10: ");
                 s = Convert.ToInt32(Console.ReadLine());
             }
-
-            decimal val = 0;
-            int zip = 0;
+          
             string str = "";
 
             //this switch handles searching for one of 11 fields
@@ -311,11 +321,11 @@ namespace ProjectUnAbandon
             {
                 case 0:
                     Console.WriteLine("Enter X (latitudinal) value: ");
-                    val = Convert.ToDecimal(Console.ReadLine());
+                    str = Console.ReadLine();
 
                     var filtered =
                         from element in JobCollection
-                        where element.LatitudeX == val
+                        where element.LatitudeX.ToString().Contains(str)
                         select element;
 
                     foreach (var element in filtered)
@@ -325,11 +335,11 @@ namespace ProjectUnAbandon
                     break;
                 case 1:
                     Console.WriteLine("Enter Y (longitudinal) value: ");
-                    val = Convert.ToDecimal(Console.ReadLine());
+                    str = Console.ReadLine();
 
                     filtered =
                         from element in JobCollection
-                        where element.LongitudeY == val
+                        where element.LongitudeY.ToString().Contains(str)
                         select element;
 
                     foreach (var element in filtered)
@@ -343,7 +353,7 @@ namespace ProjectUnAbandon
 
                     filtered =
                         from element in JobCollection
-                        where element.RecordID == str
+                        where element.RecordID.Contains(str)
                         select element;
 
                     foreach (var element in filtered)
@@ -357,7 +367,7 @@ namespace ProjectUnAbandon
 
                     filtered =
                         from element in JobCollection
-                        where element.ViolationType == str
+                        where element.ViolationType.Contains(str)
                         select element;
 
                     foreach (var element in filtered)
@@ -368,11 +378,10 @@ namespace ProjectUnAbandon
                 case 4:
                     Console.WriteLine("Enter Date Reported: ");
                     str = Console.ReadLine();
-                    DateTime theReportDate = DateTime.Parse(str);
 
                     filtered =
                         from element in JobCollection
-                        where element.DateReported == theReportDate
+                        where element.DateReported.ToShortDateString().Contains(str)
                         select element;
 
                     foreach (var element in filtered)
@@ -386,7 +395,7 @@ namespace ProjectUnAbandon
 
                     filtered =
                         from element in JobCollection
-                        where element.RecordStatus == str
+                        where element.RecordStatus.Contains(str)
                         select element;
 
                     foreach (var element in filtered)
@@ -397,12 +406,10 @@ namespace ProjectUnAbandon
                 case 6:
                     Console.WriteLine("Enter Record Status Date: ");
                     str = Console.ReadLine();
-
-                    DateTime theRecordStatusDate = DateTime.Parse(str);
-
+                    
                     filtered =
                         from element in JobCollection
-                        where element.RecordStatusDate == theRecordStatusDate
+                        where element.RecordStatusDate.ToShortDateString().Contains(str)
                         select element;
 
                     foreach (var element in filtered)
@@ -416,7 +423,7 @@ namespace ProjectUnAbandon
 
                     filtered =
                         from element in JobCollection
-                        where element.AddressStreet == str
+                        where element.AddressStreet.Contains(str)
                         select element;
 
                     foreach (var element in filtered)
@@ -430,7 +437,7 @@ namespace ProjectUnAbandon
 
                     filtered =
                         from element in JobCollection
-                        where element.AddressCity == str
+                        where element.AddressCity.Contains(str)
                         select element;
 
                     foreach (var element in filtered)
@@ -444,7 +451,7 @@ namespace ProjectUnAbandon
 
                     filtered =
                         from element in JobCollection
-                        where element.AddressState == str
+                        where element.AddressState.Contains(str)
                         select element;
 
                     foreach (var element in filtered)
@@ -454,11 +461,11 @@ namespace ProjectUnAbandon
                     break;
                 case 10:
                     Console.WriteLine("Enter the zip code: ");
-                    zip = Convert.ToInt32(Console.ReadLine());
+                    str = Console.ReadLine();
 
                     filtered =
                         from element in JobCollection
-                        where element.AddressZipCode == zip
+                        where element.AddressZipCode.ToString().Contains(str)
                         select element;
 
                     foreach (var element in filtered)
@@ -471,6 +478,5 @@ namespace ProjectUnAbandon
                     break;
             }
         }
-
     }
 }
