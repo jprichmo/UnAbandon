@@ -37,8 +37,8 @@ namespace ProjectUnAbandon
         //properties
         //properties still each need checks to see if
         //valid when sent as value to be set{}
-
         //could use error catching still considering how
+
         public string RecordID
         {
             get { return recordID; }
