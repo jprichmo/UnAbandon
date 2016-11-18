@@ -493,6 +493,37 @@ namespace ProjectUnAbandon
 
         }
 
+        public static void NumberOfOpenCases()
+        {
+            var getCountPerZipForInspectionPending = JobCollection.
+                Where(element => element.RecordStatus == "Inspection Pending").
+                GroupBy(element => element.AddressZipCode, (key, group) =>
+                new
+                {
+                    ZipCode = key,
+                    JobCount = group.Count()
+                });
+
+            var getCountPerZipForNoticeSent = JobCollection.
+                Where(element => element.RecordStatus == "Notice Sent to Owner").
+                GroupBy(element => element.AddressZipCode, (key, group) =>
+                new
+                {
+                    ZipCode = key,
+                    JobCount = group.Count()
+                });
+
+            foreach (var element in getCountPerZipForInspectionPending)
+            {
+                foreach (var element2 in getCountPerZipForNoticeSent)
+                    if (element.ZipCode == element2.ZipCode)
+                    {
+                        Console.WriteLine("The Zip Code {0} has {1} cases open total",
+                    element.ZipCode, (element.JobCount + element2.JobCount));
+                    }
+            }
+        }
+
         public static void PrintTen(IEnumerable<Project> query, bool first = true)
         {
             int count = query.Count();

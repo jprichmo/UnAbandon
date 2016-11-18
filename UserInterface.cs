@@ -210,7 +210,7 @@ namespace ProjectUnAbandon
             int sel = Convert.ToInt32(Console.ReadLine());
             if (sel < 0 || sel > (ProjectCollection.GetCount() - 1))
             {
-                Console.WriteLine("Enter a number from 0 to {0}: ", (ProjectCollection.GetCount()-1));
+                Console.WriteLine("Enter a number from 0 to {0}: ", (ProjectCollection.GetCount() - 1));
                 sel = Convert.ToInt32(Console.ReadLine());
             }
             //Console.WriteLine(sel);
@@ -266,13 +266,12 @@ namespace ProjectUnAbandon
             {
                 case '0':
                     ProjectCollection.GetCount();
-                    //call to ProjectCollection query
                     break;
                 case '1':
-                    //call to ProjectCollection query
+                    ProjectCollection.GetCountPerZip();
                     break;
                 case '2':
-                    //call to ProjectCollection query
+                    ProjectCollection.TenMostRecentlyReported();
                     break;
                 case '3':
                     //call to ProjectCollection query
