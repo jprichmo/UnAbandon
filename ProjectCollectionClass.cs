@@ -460,6 +460,39 @@ namespace ProjectUnAbandon
                     break;
             }
         }
+
+        public static void GetCountPerZip()
+        {
+            var getCountPerZip = JobCollection.
+                GroupBy(element => element.AddressZipCode, (key, group) =>
+                new
+                {
+                    ZipCode = key,
+                    JobCount = group.Count()
+                });
+
+            foreach (var element in getCountPerZip)
+            {
+                Console.WriteLine("The Zip Code {0} has {1} cases total",
+                    element.ZipCode, element.JobCount);
+            }
+        }
+
+        public static void TenMostRecentlyReported()
+        {
+            var sortedByDateReported = JobCollection.
+                OrderByDescending(element => element.DateReported).
+                ThenBy(element => element.RecordStatus).
+                Take(10);
+
+            foreach (var element in sortedByDateReported)
+            {
+                Console.WriteLine(element);
+                Console.WriteLine();
+            }
+
+        }
+
         public static void PrintTen(IEnumerable<Project> query, bool first = true)
         {
             int count = query.Count();
