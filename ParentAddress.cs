@@ -1,3 +1,24 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+//  PARENT ADDRESS CLASS for PROJECT UNABANDON
+//
+//  AUTHOR:     Derek Blankinship
+//  EDITOR:     Jason Richmond
+//
+//  ParentAddress Class defines an object to store a US address by street,
+//  city, state, and zip code.
+//
+//      addressStreet : string
+//          > the street address including numerals
+//      addressCity : string
+//          > the city
+//      addressState : string
+//          > the state
+//      addressZipCode : int
+//          > the five-digit zip code
+//
+///////////////////////////////////////////////////////////////////////////////
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
