@@ -22,6 +22,8 @@
 //          > returns the number of Projects in JobCollection
 //      DisplayAll() : void
 //          > prints the entire JobCollection to the console
+//      DisplaySelected() : void
+//          > prints the JobCollection subset to the console
 //      Modify(int) : void
 //          > allows user to change a Project field
 //      Search() : void
@@ -143,19 +145,20 @@ namespace ProjectUnAbandon
             tempLongitude = Convert.ToDecimal(Console.ReadLine());
             Console.Write("Enter the Record ID of the enforcement case : ");
             tempRecordID = Console.ReadLine();
-            Console.Write("Enter the Voilation Type of the enforcement case : ");
+// ADD OPTIONS FOR VIOLATION TYPE
+            Console.Write("Enter the Violation Type of the enforcement case : ");
             tempViolationType = Console.ReadLine();
             Console.WriteLine("Enter the Date the enforcement case was reported");
-            Console.Write("Please use format MM/DD/YYYY    : ");
+            Console.Write("Please use format MM/DD/YYYY : ");
             tempReportDate = Console.ReadLine();
             Console.Write("Enter the Current Status of the enforcement case : ");
             tempRecordStatus = Console.ReadLine();
             Console.WriteLine("Enter the date the Current Status was updated");
-            Console.Write("Please use format MM/DD/YYYY    : ");
+            Console.Write("Please use format MM/DD/YYYY : ");
             tempRecordStatusDate = Console.ReadLine();
             Console.WriteLine("Enter the full address of the enforcement case");
-            Console.WriteLine("For the first part add the Street Number (123),"
-                + "Direction (W),");
+            Console.WriteLine("For the first part add the Street Number (123), "
+                + "Direction (W), ");
             Console.WriteLine("Street Name, and then Street Type (Ave)");
             tempFullStreetAddress = Console.ReadLine();
             Console.Write("Enter the City of the enforcement case : ");
@@ -165,7 +168,7 @@ namespace ProjectUnAbandon
             Console.Write("Enter the Zip Code of the enforcement case : ");
             tempAddressZipCode = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine();
-
+// CHECK EXCEPTION HANDLING WITH PARSE
             DateTime theReportDate = DateTime.Parse(tempReportDate);
             DateTime theRecordStatusDate = DateTime.Parse(tempRecordStatusDate);
 
@@ -191,6 +194,18 @@ namespace ProjectUnAbandon
         public static void DisplayAll()
         {
             Console.WriteLine("\nDISPLAYING ALL RECORDS, {0} FOUND: ", JobCollection.Count());
+            for (int i = 0; i < JobCollection.Count(); ++i)
+            {
+                Console.WriteLine("\nITEM {0}: \n" + JobCollection[i].ToString(), i);
+                Console.WriteLine();
+            }
+        }
+
+// ADDED BUT NOT YET IMPLEMENTED PROPERLY
+        //Display selected items and print to console
+        public static void DisplaySelected()
+        {
+            Console.WriteLine("\nDISPLAYING SELECTED RECORDS, {0} FOUND: ", JobCollection.Count());
             for (int i = 0; i < JobCollection.Count(); ++i)
             {
                 Console.WriteLine("\nITEM {0}: \n" + JobCollection[i].ToString(), i);

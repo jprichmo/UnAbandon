@@ -9,21 +9,21 @@
 //
 //  Functions defined:
 //      Loop() : void
-//          >
+//          > starts user interface loop until exit is selected
 //      MenuOptions() : char
-//          >
+//          > displays menu of options
 //      SelectOption(char) : void
-//          >
+//          > gets selection input from user 
 //      ClearAllData() : void
-//          >
+//          > clears all items from ProjectColleciton
 //      LoadData() : void
-//          >
+//          > loads data from a properly formatted CSV
 //      AddItem() : void
-//          >
+//          > adds an item to the ProjectCollection
 //      DisplayAddedItem() : void
-//          >
-//      DisplayStoredItem() : void
-//          >
+//          > displays last added item
+//      DisplayStoredItems() : void
+//          > displays
 //      DisplayCount() : void
 //          >
 //      ModifyItem() : void
@@ -114,7 +114,7 @@ namespace ProjectUnAbandon
                     DisplayAddedItem();
                     break;
                 case '2':
-                    DisplayStoredItems();
+                    DisplaySelectedItems();
                     ModifyItem();
                     break;
                 case '3':
@@ -174,9 +174,17 @@ namespace ProjectUnAbandon
         //---------------------------------------------------------------------
         //  DISPLAY ALL ITEMS AND FIELDS : void
         //---------------------------------------------------------------------
-        public static void DisplayStoredItems()
+        public static void DisplayAllItems()
         {
             ProjectCollection.DisplayAll();
+        }
+
+        //---------------------------------------------------------------------
+        //  DISPLAY SELECTED ITEMS AND FIELDS : void
+        //---------------------------------------------------------------------
+        public static void DisplaySelectedItems()
+        {
+            ProjectCollection.DisplaySelected();
         }
 
         //---------------------------------------------------------------------
