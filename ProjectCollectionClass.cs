@@ -494,5 +494,21 @@ namespace ProjectUnAbandon
                     break;
             }
         }
+        public static void GetCountPerZip()
+        {
+            var getCountPerZip = JobCollection.
+                GroupBy(element => element.AddressZipCode, (key, group) =>
+                new
+                {
+                    ZipCode = key,
+                    JobCount = group.Count()
+                });
+
+            foreach (var element in getCountPerZip)
+            {
+                Console.WriteLine("The Zip Code {0} has {1} cases total", 
+                    element.ZipCode, element.JobCount);
+            }
+        }
     }
 }
