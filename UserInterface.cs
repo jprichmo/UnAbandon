@@ -5,35 +5,39 @@
 //  AUTHOR:     Jason Richmond
 //  EDITOR:     Derek Blankinship
 //
-//  
+//  This class defines the console user interface for manipulating data from
+//  South Bend Code Enforcement for a civic hacking app tentatively called
+//  Project UnAbandon.
 //
 //  Functions defined:
 //      Loop() : void
 //          > starts user interface loop until exit is selected
 //      MenuOptions() : char
-//          > displays menu of options
+//          > displays menu of options and gets user input
 //      SelectOption(char) : void
-//          > gets selection input from user 
+//          > executes user selection
 //      ClearAllData() : void
-//          > clears all items from ProjectColleciton
+//          > clears all items from colleciton
 //      LoadData() : void
 //          > loads data from a properly formatted CSV
 //      AddItem() : void
-//          > adds an item to the ProjectCollection
+//          > adds an item to the collection
 //      DisplayAddedItem() : void
 //          > displays last added item
-//      DisplayStoredItems() : void
-//          > displays
+//      DisplayAllItems() : void
+//          > displays all items in collection
+//      DisplaySelectedItems() : void
+//          > displays selected items in collection
 //      DisplayCount() : void
-//          >
+//          > gets the number of items in collection
 //      ModifyItem() : void
-//          >
+//          > changes selected item fields in collection
 //      SearchItems() : void
-//          >
+//          > returns items with fields matching specified values
 //      DisplayLINQChoices() : char
-//          >
+//          > displays the menu of predefined queries and gets user input
 //      ExecuteLINQ(char) : void
-//          >
+//          > executes user selection
 //
 ///////////////////////////////////////////////////////////////////////////////
 
