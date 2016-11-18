@@ -188,7 +188,7 @@ namespace ProjectUnAbandon
         //---------------------------------------------------------------------
         public static void DisplaySelectedItems()
         {
-            ProjectCollection.DisplaySelected();
+            ProjectCollection.DisplayAll();
         }
 
         //---------------------------------------------------------------------
