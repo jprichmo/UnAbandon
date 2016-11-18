@@ -236,12 +236,12 @@ namespace ProjectUnAbandon
             char check;
 
             Console.WriteLine("\n\tPredefined Query Menu\n");
-            Console.WriteLine("\tOption 0: Count Number of Cases for a Specific Address");
+            Console.WriteLine("\tOption 0: List Duplicates");
             Console.WriteLine("\tOption 1: Count Number of Cases per Zip Code");
             Console.WriteLine("\tOption 2: Most Recently Reported Cases");
             Console.WriteLine("\tOption 3: Most Recently Reported Cases by Zip Code");
             Console.WriteLine("\tOption 4: Number of Violations by Type");
-            Console.WriteLine("\tOption 5: Fake Query");
+            Console.WriteLine("\tOption 5: Number of Open Cases");
             Console.Write("\n\tPlease select an option from the list: ");
 
             check = Convert.ToChar(Console.ReadLine().Substring(0, 1));
@@ -265,7 +265,7 @@ namespace ProjectUnAbandon
             switch (option)
             {
                 case '0':
-                    ProjectCollection.GetCount();
+                    ProjectCollection.GetRepeatOffenderAddress();
                     break;
                 case '1':
                     ProjectCollection.GetCountPerZip();
@@ -274,13 +274,13 @@ namespace ProjectUnAbandon
                     ProjectCollection.TenMostRecentlyReported();
                     break;
                 case '3':
-                    //call to ProjectCollection query
+                    ProjectCollection.TenMostRecentlyReportedByZip();
                     break;
                 case '4':
-                    //call to ProjectCollection query
+                    ProjectCollection.NumberOfViolationsByType();
                     break;
                 case '5':
-                    //call to ProjectCollection query
+                    ProjectCollection.NumberOfOpenCases();
                     break;
                 default:
                     Console.WriteLine("\n\tThat is not a valid input.\n");

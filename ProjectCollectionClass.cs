@@ -86,7 +86,7 @@ namespace ProjectUnAbandon
             string tempAddressCity, tempAddressState;
             string tempFullStreetAddress;
             int tempAddressZipCode;
-            
+
 
             foreach (var element in query)
             {
@@ -108,7 +108,7 @@ namespace ProjectUnAbandon
                 tempAddressZipCode = Convert.ToInt32(element.addressZipCode);
 
                 DateTime theReportDate = DateTime.Parse(tempReportDate);
-                                       
+
                 DateTime theRecordStatusDate = DateTime.Parse(tempRecordStatusDate);
 
                 tempFullStreetAddress = tempAddressStreetNumber +
@@ -146,7 +146,7 @@ namespace ProjectUnAbandon
             tempLongitude = Convert.ToDecimal(Console.ReadLine());
             Console.Write("Enter the Record ID of the enforcement case : ");
             tempRecordID = Console.ReadLine();
-// ADD OPTIONS FOR VIOLATION TYPE
+            // ADD OPTIONS FOR VIOLATION TYPE
             Console.Write("Enter the Violation Type of the enforcement case : ");
             tempViolationType = Console.ReadLine();
             Console.WriteLine("Enter the Date the enforcement case was reported");
@@ -169,7 +169,7 @@ namespace ProjectUnAbandon
             Console.Write("Enter the Zip Code of the enforcement case : ");
             tempAddressZipCode = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine();
-// CHECK EXCEPTION HANDLING WITH PARSE
+            // CHECK EXCEPTION HANDLING WITH PARSE
             DateTime theReportDate = DateTime.Parse(tempReportDate);
             DateTime theRecordStatusDate = DateTime.Parse(tempRecordStatusDate);
 
@@ -329,7 +329,7 @@ namespace ProjectUnAbandon
                 Console.WriteLine("Enter a number from 0 to 10: ");
                 s = Convert.ToInt32(Console.ReadLine());
             }
-          
+
             string str = "";
 
             //this switch handles searching for one of 11 fields
@@ -403,7 +403,7 @@ namespace ProjectUnAbandon
                 case 6:
                     Console.WriteLine("Enter Record Status Date: ");
                     str = Console.ReadLine();
-                    
+
                     filtered =
                         from element in JobCollection
                         where element.RecordStatusDate.ToShortDateString().Contains(str)
@@ -461,6 +461,26 @@ namespace ProjectUnAbandon
             }
         }
 
+        public static void GetRepeatOffenderAddress()
+        {
+            var getCountPerAddress = JobCollection.
+                GroupBy(element => element.AddressStreet, (key, group) =>
+                new
+                {
+                    Address = key,
+                    JobCount = group.Count()
+                });
+
+            foreach (var element in getCountPerAddress)
+            {
+                if (element.JobCount > 1)
+                {
+                    Console.WriteLine("The Address {0} has {1} cases total",
+                        element.Address, element.JobCount);
+                }
+            }
+        }
+
         public static void GetCountPerZip()
         {
             var getCountPerZip = JobCollection.
@@ -493,6 +513,50 @@ namespace ProjectUnAbandon
 
         }
 
+        public static void TenMostRecentlyReportedByZip()
+        {
+            int inputZip;
+            Console.WriteLine("Select a Zip Code from 46530 to 46680");
+            inputZip = Convert.ToInt32(Console.ReadLine());
+            while ((inputZip > 46680) || (inputZip < 46530))
+            {
+                Console.WriteLine("Select a Zip Code from 46530 to 46680");
+                inputZip = Convert.ToInt32(Console.ReadLine());
+            }
+
+            var sortedByDateReported = JobCollection.
+                Where(element => element.AddressZipCode == inputZip).
+                OrderByDescending(element => element.DateReported).
+                ThenBy(element => element.RecordStatus).
+                Take(10);
+
+            foreach (var element in sortedByDateReported)
+            {
+                Console.WriteLine(element);
+                Console.WriteLine();
+            }
+
+        }
+
+        public static void NumberOfViolationsByType()
+        {
+            var getCountPerZip = JobCollection.
+            GroupBy(element => element.AddressZipCode, (key, group) =>
+            new
+            {
+                ZipCode = key,
+                JobCount = group.Count()
+            });
+
+            foreach (var element in getCountPerZip)
+            {
+                Console.WriteLine("The Zip Code {0} has {1} cases total",
+                    element.ZipCode, element.JobCount);
+            }
+        }
+
+
+
         public static void NumberOfOpenCases()
         {
             var getCountPerZipForInspectionPending = JobCollection.
@@ -516,11 +580,13 @@ namespace ProjectUnAbandon
             foreach (var element in getCountPerZipForInspectionPending)
             {
                 foreach (var element2 in getCountPerZipForNoticeSent)
+                {
                     if (element.ZipCode == element2.ZipCode)
                     {
                         Console.WriteLine("The Zip Code {0} has {1} cases open total",
                     element.ZipCode, (element.JobCount + element2.JobCount));
                     }
+                }
             }
         }
 
