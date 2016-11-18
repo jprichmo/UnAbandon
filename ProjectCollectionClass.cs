@@ -354,10 +354,7 @@ namespace ProjectUnAbandon
                         where element.LongitudeY.ToString().Contains(str)
                         select element;
 
-                    foreach (var element in filtered)
-                    {
-                        Console.WriteLine(element);
-                    }
+                    PrintTen(filtered);
                     break;
                 case 2:
                     Console.WriteLine("Enter Record ID: ");
@@ -368,10 +365,7 @@ namespace ProjectUnAbandon
                         where element.RecordID.Contains(str)
                         select element;
 
-                    foreach (var element in filtered)
-                    {
-                        Console.WriteLine(element);
-                    }
+                    PrintTen(filtered);
                     break;
                 case 3:
                     Console.WriteLine("Enter Violation type: ");
@@ -382,10 +376,7 @@ namespace ProjectUnAbandon
                         where element.ViolationType.Contains(str)
                         select element;
 
-                    foreach (var element in filtered)
-                    {
-                        Console.WriteLine(element);
-                    }
+                    PrintTen(filtered);
                     break;
                 case 4:
                     Console.WriteLine("Enter Date Reported: ");
@@ -396,10 +387,7 @@ namespace ProjectUnAbandon
                         where element.DateReported.ToShortDateString().Contains(str)
                         select element;
 
-                    foreach (var element in filtered)
-                    {
-                        Console.WriteLine(element);
-                    }
+                    PrintTen(filtered);
                     break;
                 case 5:
                     Console.WriteLine("Enter Record Status: ");
@@ -410,10 +398,7 @@ namespace ProjectUnAbandon
                         where element.RecordStatus.Contains(str)
                         select element;
 
-                    foreach (var element in filtered)
-                    {
-                        Console.WriteLine(element);
-                    }
+                    PrintTen(filtered);
                     break;
                 case 6:
                     Console.WriteLine("Enter Record Status Date: ");
@@ -424,10 +409,7 @@ namespace ProjectUnAbandon
                         where element.RecordStatusDate.ToShortDateString().Contains(str)
                         select element;
 
-                    foreach (var element in filtered)
-                    {
-                        Console.WriteLine(element);
-                    }
+                    PrintTen(filtered);
                     break;
                 case 7:
                     Console.WriteLine("Enter Street: ");
@@ -438,10 +420,7 @@ namespace ProjectUnAbandon
                         where element.AddressStreet.Contains(str)
                         select element;
 
-                    foreach (var element in filtered)
-                    {
-                        Console.WriteLine(element);
-                    }
+                    PrintTen(filtered);
                     break;
                 case 8:
                     Console.WriteLine("Enter City: ");
@@ -452,10 +431,7 @@ namespace ProjectUnAbandon
                         where element.AddressCity.Contains(str)
                         select element;
 
-                    foreach (var element in filtered)
-                    {
-                        Console.WriteLine(element);
-                    }
+                    PrintTen(filtered);
                     break;
                 case 9:
                     Console.WriteLine("Enter State: ");
@@ -466,10 +442,7 @@ namespace ProjectUnAbandon
                         where element.AddressState.Contains(str)
                         select element;
 
-                    foreach (var element in filtered)
-                    {
-                        Console.WriteLine(element);
-                    }
+                    PrintTen(filtered);
                     break;
                 case 10:
                     Console.WriteLine("Enter the zip code: ");
@@ -492,7 +465,7 @@ namespace ProjectUnAbandon
             int count = query.Count();
             if (count == 0 && first)
             {
-                Console.WriteLine("There are no items that match your query.\n");
+                Console.WriteLine("\nThere are no items that match your query.");
             }
             else if (count <= 10 && first)
             {
