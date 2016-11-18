@@ -50,8 +50,9 @@ namespace ProjectUnAbandon
         static public void FillProjectObjects()
         {
             string source;
-            Console.WriteLine("Enter the file path for the csv to load data from");
-            source = Console.ReadLine();
+            //Console.WriteLine("Enter the file path for the csv to load data from");
+            //source = Console.ReadLine();
+            source = "..\\..\\testFixed1000.csv";
             String[] lines = File.ReadAllLines(source);
             var query = from line in lines
                         let data = line.Split(',')
@@ -61,7 +62,7 @@ namespace ProjectUnAbandon
                             longitude = data[1],
                             //objectID = data[2],
                             recordID = data[3],
-                            //violationCatagory = data[4],
+                            //violationCategory = data[4],
                             violationType = data[5],
                             reportDate = data[6],
                             recordStatus = data[7],
@@ -78,7 +79,7 @@ namespace ProjectUnAbandon
                         };
 
             decimal tempLongitude, tempLatitude;
-            string tempRecordID, /*tempViolationCatagory,*/ tempViolationType;
+            string tempRecordID, /*tempViolationCategory,*/ tempViolationType;
             string tempReportDate, tempRecordStatus, tempRecordStatusDate;
             string tempAddressStreetNumber, tempAddressStreetDirection;
             string tempAddressStreet, tempAddressStreetType;
@@ -93,7 +94,7 @@ namespace ProjectUnAbandon
                 tempLatitude = Convert.ToDecimal(element.latitude);
                 tempLongitude = Convert.ToDecimal(element.longitude);
                 tempRecordID = element.recordID;
-                //tempViolationCatagory = element.violationCatagory;
+                //tempViolationCategory = element.violationCategory;
                 tempViolationType = element.violationType;
                 tempReportDate = element.reportDate;
                 tempRecordStatus = element.recordStatus;

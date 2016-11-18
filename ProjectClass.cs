@@ -253,36 +253,37 @@ namespace ProjectUnAbandon
             {
                 try
                 {
-                    if (value == "Abatement Complete") recordStatus = value;
-                    else if (value == "Abatement Pending") recordStatus = value;
-                    else if (value == "Billed") recordStatus = value;
-                    else if (value == "CE Property") recordStatus = value;
-                    else if (value == "Closed") recordStatus = value;
-                    else if (value == "Completed By Owner") recordStatus = value;
-                    else if (value == "Crew Assigned for Clean-Up") recordStatus = value;
-                    else if (value == "Crew Assigned for Clean-up") recordStatus = value;
-                    else if (value == "Duplicate") recordStatus = value;
-                    else if (value == "Extension Granted") recordStatus = value;
-                    else if (value == "Hearing Complete") recordStatus = value;
-                    else if (value == "Hearing Order Modified") recordStatus = value;
-                    else if (value == "Hearing Recommended") recordStatus = value;
-                    else if (value == "Hearing Rescheduled") recordStatus = value;
-                    else if (value == "Hearing Results Pending") recordStatus = value;
-                    else if (value == "Hearing Scheduled") recordStatus = value;
-                    else if (value == "Inspection Pending") recordStatus = value;
-                    else if (value == "Invoice Pending") recordStatus = value;
-                    else if (value == "No Violation") recordStatus = value;
-                    else if (value == "Note") recordStatus = value;
-                    else if (value == "Notice Sent to Owner") recordStatus = value;
-                    else if (value == "Open for Collections") recordStatus = value;
-                    else if (value == "Payment Plan") recordStatus = value;
-                    else if (value == "Referred") recordStatus = value;
-                    else if (value == "Removed from CE") recordStatus = value;
-                    else if (value == "Sent to Collections") recordStatus = value;
-                    else if (value == "Voluntary Compliance") recordStatus = value;
+                    if (value.ToLower() == "abatement complete") recordStatus = value;
+                    else if (value.ToLower() == "abatement pending") recordStatus = value;
+                    else if (value.ToLower() == "billed") recordStatus = value;
+                    else if (value.ToLower() == "ce property") recordStatus = value;
+                    else if (value.ToLower() == "closed") recordStatus = value;
+                    else if (value.ToLower() == "completed by owner") recordStatus = value;
+                    else if (value.ToLower() == "crew assigned for clean-Up") recordStatus = value;
+                    else if (value.ToLower() == "duplicate") recordStatus = value;
+                    else if (value.ToLower() == "extension granted") recordStatus = value;
+                    else if (value.ToLower() == "hearing complete") recordStatus = value;
+                    else if (value.ToLower() == "hearing order modified") recordStatus = value;
+                    else if (value.ToLower() == "hearing recommended") recordStatus = value;
+                    else if (value.ToLower() == "hearing rescheduled") recordStatus = value;
+                    else if (value.ToLower() == "hearing results pending") recordStatus = value;
+                    else if (value.ToLower() == "hearing scheduled") recordStatus = value;
+                    else if (value.ToLower() == "inspection pending") recordStatus = value;
+                    else if (value.ToLower() == "invoice pending") recordStatus = value;
+                    else if (value.ToLower() == "no violation") recordStatus = value;
+                    else if (value.ToLower() == "note") recordStatus = value;
+                    else if (value.ToLower() == "notice sent to owner") recordStatus = value;
+                    else if (value.ToLower() == "open for collections") recordStatus = value;
+                    else if (value.ToLower() == "payment plan") recordStatus = value;
+                    else if (value.ToLower() == "referred") recordStatus = value;
+                    else if (value.ToLower() == "removed from ce") recordStatus = value;
+                    else if (value.ToLower() == "sent to collections") recordStatus = value;
+                    else if (value.ToLower() == "voluntary compliance") recordStatus = value;
                     else
                     {
-                        throw new ArgumentException("Not a valid Record Status Type");
+                        // THIS STATIC CHECK IS TOO NARROW FOR THE DATA
+                        recordStatus = value;
+                    //    throw new ArgumentException("Not a valid Record Status Type");
                     }
                 }
                 catch (Exception ex)
