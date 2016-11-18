@@ -202,14 +202,14 @@ namespace ProjectUnAbandon
             }
         }
 
-// ADDED BUT NOT YET IMPLEMENTED PROPERLY
         //Display selected items and print to console
-        public static void DisplaySelected()
+        public static void DisplaySelected(IEnumerable<Project> query)
         {
-            Console.WriteLine("\nDISPLAYING SELECTED RECORDS, {0} FOUND: ", JobCollection.Count());
-            for (int i = 0; i < JobCollection.Count(); ++i)
+            int count = 0;
+            Console.WriteLine("\nDISPLAYING SELECTED: ");
+            foreach (var element in query)
             {
-                Console.WriteLine("\nITEM {0}: \n" + JobCollection[i].ToString(), i);
+                Console.WriteLine("\n{0}: \n" + element, count++);
                 Console.WriteLine();
             }
         }
@@ -343,11 +343,7 @@ namespace ProjectUnAbandon
                         from element in JobCollection
                         where element.LatitudeX.ToString().Contains(str)
                         select element;
-
-                    foreach (var element in filtered)
-                    {
-                        Console.WriteLine(element);
-                    }
+                    PrintTen(filtered);
                     break;
                 case 1:
                     Console.WriteLine("Enter Y (longitudinal) value: ");
@@ -484,14 +480,55 @@ namespace ProjectUnAbandon
                         where element.AddressZipCode.ToString().Contains(str)
                         select element;
 
-                    foreach (var element in filtered)
-                    {
-                        Console.WriteLine(element);
-                    }
+                    PrintTen(filtered);
                     break;
                 default:
                     Console.WriteLine("Number must be 0 to 10.");
                     break;
+            }
+        }
+        public static void PrintTen(IEnumerable<Project> query, bool first = true)
+        {
+            int count = query.Count();
+            if (count == 0 && first)
+            {
+                Console.WriteLine("There are no items that match your query.\n");
+            }
+            else if (count <= 10 && first)
+            {
+                Console.WriteLine("All {0} items that match your query are:\n", count);
+                DisplaySelected(query);
+            }
+            else if (count <= 10 && !first)
+            {
+                Console.WriteLine("The last {0} items that match your query are:\n", count);
+                DisplaySelected(query);
+            }
+            else if (count > 10)
+            {
+                if (first)
+                    Console.WriteLine("The first 10 of {0} items that match your query are:\n", count);
+                else
+                    Console.WriteLine("The next 10 of {0} items that match your query are:\n", count);
+
+                var ten = query.Take(10);
+
+                DisplaySelected(ten);
+
+                Console.WriteLine("Would you like to print the next ten items?\n" +
+                                  "Enter 1 for yes, 0 for no: ");
+                int s = Convert.ToInt32(Console.ReadLine());
+                while (s < 0 || s > 1)
+                {
+                    Console.WriteLine("Enter 1 for yes, 0 for no: ");
+                    s = Convert.ToInt32(Console.ReadLine());
+                }
+                if (s == 1)
+                {
+                    var next = query.Skip(10);
+                    PrintTen(next, false);
+                }
+
             }
         }
     }
