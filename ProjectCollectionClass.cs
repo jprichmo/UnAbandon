@@ -494,5 +494,19 @@ namespace ProjectUnAbandon
                     break;
             }
         }
+        public static void TenMostRecentlyReported()
+        {
+            var sortedByDateReported = JobCollection.
+                OrderByDescending(element => element.DateReported).
+                ThenBy(element => element.RecordStatus).
+                Take(10);
+            
+            foreach (var element in sortedByDateReported)
+            {
+                Console.WriteLine(element);
+                Console.WriteLine();
+            }
+
+        }
     }
 }
